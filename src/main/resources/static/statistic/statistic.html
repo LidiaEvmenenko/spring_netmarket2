@@ -1,0 +1,18 @@
+<div class="main" ng-app="app-front" ng-controller="statisticController">
+    <div class="container-main" >
+            <table  class="table" border=""  bgcolor="#d0d0d0" >
+                <thead>
+                <tr bg-light>
+                    <th>Название сервиса</th>
+                    <th>Количество ms</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in mapp" bgcolor="ghostwhite">
+                        <td>{{p.title}}</td>
+                        <td>{{p.timeService}}</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</div>
