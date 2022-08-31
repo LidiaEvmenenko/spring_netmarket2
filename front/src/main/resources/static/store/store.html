@@ -1,0 +1,93 @@
+<div class="main" ng-app="app-front" ng-controller="storeController">
+    <div class="top">
+        <div class="container-main" >
+            <div class="container-store" >
+                <div class="block-category">
+                    <label class="block-category-label" >Категория:</label>
+                    <ul class="category-name">
+                        <li  >
+                            <button class="btn-category-choice" ng-click="loadProducts()" >Все продукты</button>
+                        </li>
+                    </ul>
+                    <ul class="category-name">
+                        <li  ng-repeat="c in category">
+                            <button class="btn-category-choice" ng-click="loadProductsByCategory(1,c.title)" >{{c.title}}</button>
+                        </li>
+                    </ul>
+                    <!--        </nav>-->
+                </div>
+                <!--    <h2 align="center" >Список продуктов</h2>-->
+                <div class="block-product">
+                    <table id="tableProduct" class="table" border=""  bgcolor="#d0d0d0" >
+
+                        <thead>
+                        <tr bg-light>
+                            <th>№№</th>
+                            <th>Название</th>
+                            <th>Цена</th>
+                            <th>Количество</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <form>
+                            <tr ng-repeat="p in productsPage" bgcolor="ghostwhite">
+                                <td id="td-count">{{p.nom}}</td>
+                                <td>{{p.title}}</td>
+                                <td>{{p.price}}</td>
+                                <td>
+                                    <select id="countProductId" ng-model="p.count">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </td>
+<!--                                <td>-->
+<!--                                    <button type="button" class="btn btn-primary" ng-click="addCartProduct(p)" >Добавить в корзину</button>-->
+<!--                                </td>-->
+                                <td>
+                                    <button type="button" class="btn btn-primary" ng-click="showInfo(p)" >Подробнее</button>
+                                </td>
+<!--                                <td>-->
+<!--                                    <button type="button" class="btn btn-primary" ng-click="navToEditProductPage(p.id)" >Изменить</button>-->
+<!--                                </td>-->
+                                <td>
+                                    <button type="button" class="btn btn-primary" ng-click="deleteProduct(p)" >Удалить</button>
+                                </td>
+
+                            </tr>
+                        </form>
+                        </tbody>
+                    </table>
+<!--                    <nav id="navStore" aria-label="Page navigation example">-->
+<!--                        <ul class="pagination">-->
+<!--                            <li class="page-item">-->
+<!--                                <a class="page-link" aria-label="Previous" ng-click="prevPage()">-->
+<!--                                    <span aria-hidden="true">&laquo;</span>-->
+<!--                                </a>-->
+<!--                            </li>-->
+
+<!--                            <li class="page-item" ng-repeat="pageIndex in paginationArray">-->
+<!--                                &lt;!&ndash;                <button class="page-link" ng-click="loadProducts(pageIndex)">{{pageIndex}}</button>&ndash;&gt;-->
+<!--                                <button class="page-link" ng-click="loadProductsPage(pageIndex)">{{pageIndex}}</button>-->
+<!--                            </li>-->
+
+<!--                            <li class="page-item">-->
+<!--                                <a class="page-link" aria-label="Next" ng-click="nextPage()">-->
+<!--                                    <span aria-hidden="true">&raquo;</span>-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </nav>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    <div class="footer-main">-->
+    <!--        <div class="footer-container"><span class="sub">© Все права защищены</span></div>-->
+    <!--    </div>-->
+</div>

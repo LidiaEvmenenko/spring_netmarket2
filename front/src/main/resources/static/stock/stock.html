@@ -1,0 +1,44 @@
+<div class="main" ng-app="app-front" ng-controller="stockController">
+    <div class="top">
+        <div class="container-main" >
+
+            <div class="container-create-edit" >
+                <h3 align="center">Поступление продукта на склад</h3>
+                <div class="block-left"></div>
+                <form class="form-create" novalidate ng-submit="loadProduct()">
+                    <div class="input-group mb-3">
+                        <label  class="input-group-text">Выберите поставщика</label>
+                        <select id="selectManufacturer" class="form-control" placeholder="Поставщик" ng-model="selectmanufacturerTitle"></select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Загрузить продукты поставщика</button><br><br>
+                </form>
+                <form class="form-create" novalidate ng-submit="createNewStock()">
+
+                <div class="input-group mb-3">
+                        <label  class="input-group-text">Выберите продукт</label>
+                        <select id="selectProduct" class="form-control" placeholder="Название продукта" ng-model="new_stock.productTitle"></select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label  class="input-group-text">Дата поступления</label>
+                        <input type="date" class="form-control" placeholder="Дата поступления" ng-model="new_stock.delivery_date">
+                    </div>
+                    <div class="input-group mb-3">
+                        <label  class="input-group-text">Количество</label>
+                        <input type="number" class="form-control" placeholder="Количество" ng-model="new_stock.amount">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </form>
+                <div class="block-left"></div>
+            </div>
+            <div>
+                <form class="form-create" novalidate ng-submit="loadReport()">
+                <button id="btn-report" type="submit" class="btn btn-primary">Сформировать отчет</button><br><br>
+                <a id="report" class="nav-link" href="" ></a>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>

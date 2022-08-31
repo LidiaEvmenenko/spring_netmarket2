@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+<!--    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link href="/min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+    <!--    локальное хранилище-->
+<!--    <script src="/webjars/jquery/jquery.min.js"></script>-->
+<!--    <script src="/webjars/sockjs-client/sockjs.min.js"></script>-->
+<!--    <script src="/webjars/stomp-websocket/stomp.min.js"></script>-->
+<!--    <script src="/app.js"></script>-->
+
+</head>
+<div class="main" ng-app="app-front" ng-controller="indexController">
+    <div class="top">
+        <div class="header-my">
+            <div class="logo"></div>
+            <div  align="center">
+                <h1>Интернет магазин</h1>
+            </div>
+            <div class="info">89999999999</div>
+        </div>
+        <div class="container-main" >
+            <div class="block-menu-main">
+                <div class="block-menu-left" ></div>
+                <!--    <nav class="navbar navbar-expand-lg bg-light">-->
+                <!--        <div class="container-fluid">-->
+                <!--            <div class="collapse navbar-collapse" id="navbarNav">-->
+                <!--                <ul class="navbar-nav">-->
+                <ul class="block-menu">
+                    <li class="menu-item">
+                        <!--                        <a class="nav-link active" aria-current="page" href="#!/"> Главная </a>-->
+                        <a class="nav-link active" aria-current="page" href="#!/"> Главная </a>
+                    </li>
+                    <li class="menu-item" ng-show="isUserLoggedIn()">
+                        <!--                        <a class="nav-link" href="#!/store"> Каталог продуктов </a>-->
+                        <a class="nav-link" href="#!/store"> Каталог продуктов </a>
+                    </li>
+                    <li class="menu-item" ng-show="isUserLoggedIn()">
+                        <!--                        <a class="nav-link" href="#!/create_product"> Добавить товар(техн) </a>-->
+                        <a class="nav-link" href="#!/create_product"> Добавить товар </a>
+                    </li>
+<!--                    <li class="menu-item" ng-show="isUserLoggedIn()">-->
+<!--                        &lt;!&ndash;                        <a class="nav-link" href="#!/cart"> Корзина </a>&ndash;&gt;-->
+<!--                        <a class="nav-link" href="#!/cart"> Корзина </a>-->
+<!--                    </li>-->
+<!--                    <li class="menu-item" ng-show="isUserLoggedIn()">-->
+<!--                        &lt;!&ndash;                        <a class="nav-link" href="#!/cart"> Корзина </a>&ndash;&gt;-->
+<!--                        <a class="nav-link" href="#!/stock"> Склад </a>-->
+<!--                    </li>-->
+<!--                    <li class="menu-item" ng-show="isUserLoggedIn()">-->
+<!--                        &lt;!&ndash;                        <a class="nav-link" href="#!/cart"> Корзина </a>&ndash;&gt;-->
+<!--                        <a class="nav-link" href="#!/statistic"> Статистика </a>-->
+<!--                    </li>-->
+<!--                    <li class="menu-item" ng-show="!isUserLoggedIn()">-->
+<!--                        &lt;!&ndash;                        <a class="nav-link" href="#!/auth" > Вход </a>&ndash;&gt;-->
+<!--                        <a class="nav-link" href="#!/auth" > Вход </a>-->
+<!--                    </li>-->
+<!--                    <li class="menu-item"  style="padding: 4px;" ng-show="isUserLoggedIn()">-->
+<!--                        &lt;!&ndash;                        <a class="nav-link" href="#" onclick="tryToLogout()"> Выйти </a>&ndash;&gt;-->
+<!--                        <button class="btn btn-outline-secondary btn-sm" ng-click="tryToLogout()"> Выйти </button>-->
+<!--                    </li>-->
+
+<!--                    <li class="nav-item" ng-show="!isUserLoggedIn()">-->
+<!--                        <form class="align-middle" ng-submit="tryToAuth()">-->
+<!--                            <div class="input-group input-group-sm" style="padding: 4px;">-->
+<!--                                <input id="navLoginField" class="form-control" ng-model="user.username" type="text"-->
+<!--                                       aria-describedby="inputGroup-sizing-sm" style="margin-left: 10px;">-->
+
+<!--                                <input id="navPasswordField" class="form-control" ng-model="user.password" type="password"-->
+<!--                                       aria-describedby="inputGroup-sizing-sm" style="margin-left: 10px;">-->
+
+<!--                                <button id="navLoginSubmit" class="btn btn-outline-warning btn-sm"-->
+<!--                                        style="margin-left: 10px;" type="submit">Войти-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </li>-->
+                    <!--                    <li class="menu-item" id="userName" value=""></li>-->
+                </ul>
+<!--                <div class="user111" >-->
+<!--                    <label  >Вы вошли с логином: </label>-->
+<!--                    <input class="inputUser" id="userName" value="" disabled></input>-->
+<!--                </div>-->
+            </div>
+            <!--        </div>-->
+            <!--    </nav>-->
+        </div>
+    </div>
+<!--    <div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--            <table id="conversation" class="table table-striped">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>Greetings</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody id="greetings">-->
+
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <ng-view></ng-view>
+
+    <script src="index.js"></script>
+    <script src="store/store.js"></script>
+    <script src="welcome/welcome.js"></script>
+    <script src="edit_product/edit_product.js"></script>
+    <script src="create_product/create_product.js"></script>
+    <script src="cart/cart.js"></script>
+    <script src="auth/auth.js"></script>
+    <script src="stock/stock.js"></script>
+    <script src="statistic/statistic.js"></script>
+
+
+</div>
+</html>
+<!--<!doctype html>-->
+<!--<html lang="en" >-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <link rel="stylesheet" href="style.css">-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"-->
+<!--          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"-->
+<!--            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"-->
+<!--            crossorigin="anonymous"></script>-->
+
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">&ndash;&gt;-->
+<!--&lt;!&ndash;    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>&ndash;&gt;-->
+<!--    <script src="index.js"></script>-->
+<!--    <script src="cart/cart.js"></script>-->
+<!--    <script src="welcome/welcome.js"></script>-->
+<!--    <script src="create_product/create_product.js"></script>-->
+<!--    <script src="auth/auth.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="main" ng-app="app-front" ng-controller="indexController">-->
+<!--<div class="container" >-->
+<!--    <div class="container-main" >-->
+<!--        <div class="block-menu-main">-->
+<!--            <div class="block-menu-left" ></div>-->
+<!--            &lt;!&ndash;    <nav class="navbar navbar-expand-lg bg-light">&ndash;&gt;-->
+<!--            &lt;!&ndash;        <div class="container-fluid">&ndash;&gt;-->
+<!--            &lt;!&ndash;            <div class="collapse navbar-collapse" id="navbarNav">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <ul class="navbar-nav">&ndash;&gt;-->
+<!--            <ul class="block-menu">-->
+<!--                <li class="menu-item">-->
+<!--                    &lt;!&ndash;                        <a class="nav-link active" aria-current="page" href="#!/"> Главная </a>&ndash;&gt;-->
+<!--                    <a class="nav-link active" aria-current="page" href="#!/"> Главная </a>-->
+<!--                </li>-->
+<!--&lt;!&ndash;                <li class="menu-item" >&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash;                        <a class="nav-link" href="#!/store"> Каталог продуктов </a>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a class="nav-link" href="#!/store"> Каталог продуктов </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </li>&ndash;&gt;-->
+<!--                <li class="menu-item" >-->
+<!--                    &lt;!&ndash;                        <a class="nav-link" href="#!/create_product"> Добавить товар(техн) </a>&ndash;&gt;-->
+<!--                    <a class="nav-link" href="#!/create_product"> Добавить товар </a>-->
+<!--                </li>-->
+<!--                <li class="menu-item" >-->
+<!--                    &lt;!&ndash;                        <a class="nav-link" href="#!/cart"> Корзина </a>&ndash;&gt;-->
+<!--                    <a class="nav-link" href="#!/cart"> Корзина </a>-->
+<!--                </li>-->
+<!--                <li class="menu-item" >-->
+<!--                    &lt;!&ndash;                        <a class="nav-link" href="#!/auth" > Вход </a>&ndash;&gt;-->
+<!--                    <a class="nav-link" href="#!/auth" > Вход </a>-->
+<!--                </li>-->
+<!--                <li class="menu-item"   >-->
+<!--                    &lt;!&ndash;                        <a class="nav-link" href="#" onclick="tryToLogout()"> Выйти </a>&ndash;&gt;-->
+<!--                    <button class="btn btn-outline-secondary btn-sm" ng-click="tryToLogout()"> Выйти </button>-->
+<!--                </li>-->
+
+<!--                <li class="nav-item" >-->
+<!--                    <form class="align-middle" ng-submit="tryToAuth()">-->
+<!--                        <div class="input-group input-group-sm" style="padding: 4px;">-->
+<!--                            <input id="navLoginField" class="form-control" ng-model="user.username" type="text"-->
+<!--                                   aria-describedby="inputGroup-sizing-sm" style="margin-left: 10px;">-->
+
+<!--                            <input id="navPasswordField" class="form-control" ng-model="user.password" type="password"-->
+<!--                                   aria-describedby="inputGroup-sizing-sm" style="margin-left: 10px;">-->
+
+<!--                            <button id="navLoginSubmit" class="btn btn-outline-warning btn-sm"-->
+<!--                                    style="margin-left: 10px;" type="submit">Войти-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </li>-->
+<!--                &lt;!&ndash;                    <li class="menu-item" id="userName" value=""></li>&ndash;&gt;-->
+<!--            </ul>-->
+<!--            <div class="user111" >-->
+<!--                <label  >Вы вошли с логином: </label>-->
+<!--                <input class="inputUser" id="userName" value="" disabled></input>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </nav>&ndash;&gt;-->
+<!--    </div>-->
+<!--    <p></p>-->
+<!--    <h1>March Market</h1>-->
+<!--    <h1>Geek Market</h1>-->
+<!--    <p></p>-->
+<!--    <h3>Список товаров</h3>-->
+<!--    <p></p>-->
+<!--    <table class="table table-hover">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <td>ID</td>-->
+<!--            <td>Название</td>-->
+<!--            <td>Цена</td>-->
+<!--            <td></td>-->
+<!--            <td></td>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr ng-repeat="p in products">-->
+<!--            <td>{{p.id}}</td>-->
+<!--            <td>{{p.title}}</td>-->
+<!--            <td>{{p.price}}</td>-->
+<!--            <td>-->
+<!--                <button class="btn btn-success" ng-click="addToCart(p.id)">В корзину</button>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Удалить</button>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--    <p></p>-->
+<!--    <h3>Добавить продукт</h3>-->
+<!--    <p></p>-->
+<!--    <form class="row g-3" ng-submit="createNewProduct()">-->
+<!--        <div class="col-auto">-->
+<!--            <input type="text" class="form-control" id="newProductTitle" ng-model="newProduct.title" placeholder="Название">-->
+<!--        </div>-->
+<!--        <div class="col-auto">-->
+<!--            <input type="number" class="form-control" id="newProductPrice" ng-model="newProduct.price" placeholder="Цена">-->
+<!--        </div>-->
+<!--        <div class="col-auto">-->
+<!--            <button type="submit" class="btn btn-primary mb-3">Создать</button>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
