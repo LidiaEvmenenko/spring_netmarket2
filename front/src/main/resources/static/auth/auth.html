@@ -1,0 +1,37 @@
+
+<body ng-app="app-front">
+
+<!--<div class="container" ng-controller="storeController">-->
+<!--<div id="wrapper" ng-controller="authProductController">-->
+<div id="container-main" ng-controller="authController">
+    <!--    <div class="user-icon"></div>-->
+    <!--    <div class="pass-icon"></div>-->
+    <form name="login-form" class="login-form" action="" >
+        <div class="header-auth">
+            <h1>Авторизация</h1>
+        </div>
+
+        <div class="content-auth">
+            <input id="navLoginField" class="input username" ng-model="user.username" type="text"
+                   onfocus="this.value=''" placeholder="Введите Ваш логин..." required>
+
+            <input id="navPasswordField" class="input password" ng-model="user.password" type="password"
+                   onfocus="this.value=''" placeholder="Введите Ваш пароль..." required>
+
+            <input id="navEmailField"  type="email" class="input email" ng-model="user.email"
+                   onfocus="this.value=''" placeholder="Введите Ваш email адрес..." required/>
+
+            <!--		<input name="password" type="password" class="input password" value="Пароль" onfocus="this.value=''" />-->
+        </div>
+
+        <div class="footer-auth">
+            <!--        <button id="navLoginSubmit" class="btn btn-outline-warning btn-sm"-->
+            <!--                type="submit" >Войти</button>-->
+
+            <input type="submit" name="submit" value="Регистрация" class="button" ng-click="tryToReg()"/>
+            <input type="submit" name="submit" value="Войти" class="button" ng-click="tryToAuth()" />
+        </div>
+
+    </form>
+</div>
+</body>

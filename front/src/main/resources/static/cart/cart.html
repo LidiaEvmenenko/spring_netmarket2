@@ -1,0 +1,77 @@
+
+<div class="main" ng-app="app-front" ng-controller="cartProductController">
+    <div class="top">
+        <div class="container-main">
+
+            <div class="container-create-edit" >
+                <h2 align="center">Список продуктов в корзине</h2>
+                <div class="block-left"></div>
+                <div class="container-cart">
+                    <table class="table" border=""  bgcolor="#d0d0d0">
+                        <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Цена</th>
+                            <th>Количество</th>
+                            <th></th>
+                            <th></th>
+                            <th>Сумма</th>
+                            <th></th>
+
+                        </tr>
+                        </thead>
+                        <tbody >
+
+                        <tr ng-repeat="p in productsCart.content" bgcolor="ghostwhite">
+
+                            <td>{{p.productTitle}}</td>
+                            <td>{{p.productPrice}}</td>
+                            <td>{{p.amount}}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" ng-click="incAmount(p)" >+</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" ng-click="subAmount(p)" >-</button>
+                            </td>
+                            <td>{{p.productPrice * p.amount}}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" ng-click="deleteProduct(p.id)" >Удалить</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tr id="trItog" bgcolor="#dadada">
+                            <th>Итого</th>
+                            <th></th>
+                            <th></th>
+                            <th id="sumItog"></th>
+                            <th></th>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <button type="button" class="btn btn-primary" ng-click="buyProductAll()" >Купить</button>
+                    <p></p>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" aria-label="Previous" ng-click="prevPage()">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+
+                            <li class="page-item" ng-repeat="pageIndex in paginationArray">
+                                <button class="page-link" ng-click="loadProducts(pageIndex)">{{pageIndex}}</button>
+                            </li>
+
+                            <li class="page-item">
+                                <a class="page-link" aria-label="Next" ng-click="nextPage()">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="block-left"></div>
+            </div>
+        </div>
+    </div>
+</div>
