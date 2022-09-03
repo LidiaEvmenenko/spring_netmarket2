@@ -25,9 +25,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                        @Param("weight") Double weight, @Param("category_id") Long category_id,
                        @Param("manufacturer_id") Long manufacturer_id);
 
-    List<Product> findAllByCategory_Id(Long category_id);
+    List<Product> findByCategory_Id(Long category_id);
 
-    List<Product> findAllByManufacturer_Id(Long Manufacturer_id);
+    List<Product> findByManufacturer_Id(Long Manufacturer_id);
 
 
     Optional<Product> findByTitle(String title);

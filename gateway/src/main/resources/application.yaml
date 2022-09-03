@@ -1,0 +1,47 @@
+server:
+  port: 5555
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+      routes:
+        - id: products
+          uri: http://localhost:8190
+          predicates:
+            - Path=/logic/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/logic-service
+            - JwtAuthFilter
+        - id: front
+          uri: http://localhost:3000
+          predicates:
+            - Path=/app-front/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/app-front
+            - JwtAuthFilter
+        - id: app-auth
+          uri: http://localhost:8187
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/app-auth
+            - JwtAuthFilter
+
+jwt:
+  secret: fasdfo3451kb12l3k4h12k5h2lkj5h12lk3b5l12kg61l2k451lk15l43k5h1
+  lifetime: 36000000

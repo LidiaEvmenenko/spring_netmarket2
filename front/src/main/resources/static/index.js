@@ -52,13 +52,13 @@
 })();
 
 angular.module('app-front').controller('indexController', function ($rootScope, $scope, $http, $localStorage, $location) {
-    const contextPath = 'http://localhost:8189/app/api/v1/';
+
 
 var aaa = document.getElementById("userName");
 
    $scope.tryToAuth = function () {
 
-        $http.post(contextPath + 'auth', $scope.user)
+        $http.post('http://localhost:5555/app-auth', $scope.user)
             .then(function successCallback(response) {
             console.log("response.data.token = "+response.data.token);
 

@@ -19,7 +19,7 @@ public class FileService {
     private final String baseDir;
     private final ProductService productService;
 
-    public FileService(@Value("${geek.storage.path}") String baseDir, ProductService productService) throws IOException {
+    public FileService(@Value("${marketproducts.storage.path}") String baseDir, ProductService productService) throws IOException {
         this.baseDir = baseDir;
         this.productService = productService;
         Path dir = Path.of(baseDir);

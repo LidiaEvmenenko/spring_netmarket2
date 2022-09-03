@@ -2,6 +2,7 @@ package marketproducts.service;
 
 
 import lombok.RequiredArgsConstructor;
+import marketapi.ApiProductsListView;
 import marketapi.ApiProductsView;
 import marketproducts.entity.Category;
 import marketproducts.entity.Manufacturer;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +25,7 @@ public class ProductService {
     private final CategoryService categoryService;
     private final ManufacturerService manufacturerService;
     private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
 
     public List<Product> getProducts() {
         return productRepository.findAll();
@@ -50,24 +53,45 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public Page<Product> findAll(int pageIndex, int pageSize){
+//    public Page<Product> findAll(int pageIndex, int pageSize){
+//
+//        return productRepository.findAll(PageRequest.of(pageIndex, pageSize));
+//    }
 
-        return productRepository.findAll(PageRequest.of(pageIndex, pageSize));
+    public ApiProductsListView findAll() {
+        List<Product> products = productRepository.findAll();
+
+        ApiProductsListView listView = new ApiProductsListView();
+        for (Product p :products) {
+            ApiProductsView view = productMapper.mapToView(p);
+
+            listView.addProductToList(view);
+        }
+
+        return listView;
     }
 
     @Transactional
-    public List<Product> findProductsByCategory(String title){
+    public ApiProductsListView findProductsByCategory(String title){
         Optional<Category> category = categoryService.findByTitle(title);
         if (!category.isEmpty()) {
-            return productRepository.findAllByCategory_Id(category.get().getId());
+            List<Product> products = productRepository.findByCategory_Id(category.get().getId());
+            if (!products.isEmpty()) {
+                ApiProductsListView view = new ApiProductsListView();
+                for (Product p :products) {
+                    view.addProductToList(productMapper.mapToView(p));
+                }
+                return view;
+            }
         }
-        return null;
+        return new ApiProductsListView();
     }
 
     @Transactional
-    public List<Product> findByManufacturer(String title){
+    public ApiProductsListView findByManufacturer(String title){
         Optional<Manufacturer> manufacturer = manufacturerService.findByTitle(title);
-         return productRepository.findAllByManufacturer_Id(manufacturer.get().getId());
+        return (ApiProductsListView) productRepository.findByManufacturer_Id(manufacturer.get().getId()).stream().
+                map(p -> productMapper.mapToView(p)).collect(Collectors.toList());
     }
 
 }
