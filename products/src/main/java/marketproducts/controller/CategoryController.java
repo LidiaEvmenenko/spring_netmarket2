@@ -39,18 +39,18 @@ public class CategoryController {
     }
 
 
-    @GetMapping("/page")
-    public ApiProductsListView findByCategory(@RequestParam(name = "p", defaultValue = "1") int pageIndex,
-                                              @RequestParam(name = "title", defaultValue = "1") String title) {
-        if (pageIndex < 1) {
-            pageIndex = 1;
-        }
-        List<Product> products =  productService.findProductsByCategory(title);
-        ApiProductsListView listView = new ApiProductsListView();
-        for (Product p :products) {
-            ApiProductsView view = productMapper.mapToView(p);
-            listView.addProductToList(view);
-        }
-        return listView;
-    }
+//    @GetMapping("/page")
+//    public ApiProductsListView findByCategory(@RequestParam(name = "p", defaultValue = "1") int pageIndex,
+//                                              @RequestParam(name = "title", defaultValue = "1") String title) {
+//        if (pageIndex < 1) {
+//            pageIndex = 1;
+//        }
+//        List<Product> products =  productService.findProductsByCategory(title);
+//        ApiProductsListView listView = new ApiProductsListView();
+//        for (Product p :products) {
+//            ApiProductsView view = productMapper.mapToView(p);
+//            listView.addProductToList(view);
+//        }
+//        return listView;
+//    }
 }

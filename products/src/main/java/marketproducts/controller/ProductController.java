@@ -25,21 +25,13 @@ public class ProductController {
     private final ProductMapper productMapper;
     private final CategoryService categoryService;
 
-
     @GetMapping
-    public ApiProductsListView findAll(@RequestParam(name = "p") int pageIndex) {
-        Page<Product> products = productService.findAll(pageIndex-1,5);
-        ApiProductsListView listView = new ApiProductsListView();
-        for (Product p :products) {
-            ApiProductsView view = productMapper.mapToView(p);
-            listView.addProductToList(view);
-        }
-        return listView;
+    public ApiProductsListView findAll() {
+        return productService.findAll();
     }
 
     @PostMapping
     public void createNewProduct(@RequestBody ApiProductsView product) {
-
         productService.create(product);
     }
 
@@ -48,15 +40,9 @@ public class ProductController {
         productService.delete(id);
     }
 
-    @GetMapping("/manufacturer")
-    public List<ProductDto> findByManufacturer(@RequestParam(name = "title") String title) {
-        List<ProductDto> productDtos = new ArrayList<>();
-        List<Product> products = productService.findByManufacturer(title);
-        for (Product p:products) {
-            ProductDto productDto = new ProductDto(p);
-            productDtos.add(productDto);
-        }
-        return productDtos;
+    @GetMapping("/by_category")
+    public ApiProductsListView findByCategory(@RequestParam(name = "title", defaultValue = "Все продукты") String title) {
+        return productService.findProductsByCategory(title);
     }
 
 }

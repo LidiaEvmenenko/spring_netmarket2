@@ -1,5 +1,5 @@
 angular.module('app-front').controller('storeController', function ($routeParams, $scope, $http, $location) {
-    const contextPath = 'http://localhost:8189/app/api/v1/';
+    const contextPath = 'http://localhost:5555/logic/api/v1/';
 
 let pageElements=0;
 let currentPageIndex = 1;
@@ -25,28 +25,23 @@ var objTable = document.getElementById("tableProduct");
          url: contextPath + 'products',
          method: 'GET',
          params: {
-          p: pageIndex
+       //   p: pageIndex
          }
       }).then(function(response) {
-     if (response.data.length != 0) {
+     if (response.data.productsViewList.length != 0) {
                      let n = 1;
                      for(let i = 0; i < response.data.productsViewList.length; i++){
                         response.data.productsViewList[i].nom = n;  n++;
                      }
+                      $scope.productsPage = response.data.productsViewList;
+                       objTable.style.display = "table";
+                                                 //   objNav.style.visibility = "visible";
+                                      }else {
+                                         objTable.style.display = "none";
+                                    //     objNav.style.visibility = "hidden";
+                                         alert("В данной категории нет продуктов.");
+                                      }
 
-                     }
-         $scope.productsPage = response.data.productsViewList;
-
-         $scope.paginationArray = $scope.generatePagesIndexes(1, $scope.productsPage.totalPages);
-
-
-           if (response.data.productsViewList.length != 0) {
-              objTable.style.display = "table";
-          //    objNav.style.visibility = "visible";
-           }else {
-              objTable.style.display = "none";
-           //   objNav.style.visibility = "hidden";
-                       }
       });
       }
 
@@ -68,47 +63,40 @@ var objTable = document.getElementById("tableProduct");
 
        currentPageIndex = pageIndex;
         $http({
-           url: contextPath + 'category/page',
+           url: contextPath + 'products/by_category',
            method: 'GET',
            params: {
-            p: pageIndex,
             title: title
            }
         }).then(function(response) {
-        console.log(response.data);
-        if (response.data.totalElements != 0) {
-           let n = (currentPageIndex - 1) * 5;
-           response.data.content[0].nom = n;
-           for(let i = 0; i < response.data.content.length; i++){
-               n++;
-               response.data.content[i].nom = n;
+        if (response.data.productsViewList.length != 0) {
+           let n = 1;
+
+           for(let i = 0; i < response.data.productsViewList.length; i++){
+
+               response.data.productsViewList[i].nom = n;   n++;
            }
-           currentLengthPage = response.data.content.length;
-        }
+          $scope.productsPage = response.data.productsViewList;
+                                   objTable.style.display = "table";
+                               //    objNav.style.visibility = "visible";
+                                  }else{
+                                  objTable.style.display = "none";
+                                //    objNav.style.visibility = "hidden";
+                                  alert("В данной категории нет продуктов.");
+                                  }
+        }, function failCallback(response) {
 
-           $scope.productsPage = response.data;
-
-           $scope.paginationArray = $scope.generatePagesIndexes(1, $scope.productsPage.totalPages);
-
-           if (response.data.totalElements != 0) {
-              objTable.style.display = "table";
-           //   objNav.style.visibility = "visible";
-           }else {
-              objTable.style.display = "none";
-           //   objNav.style.visibility = "hidden";
-           }
-        });
-        }
+               });
+               }
 
  $scope.deleteProduct = function (product) {
      $http.delete(contextPath + 'products/'+ product.id)
                  .then(function successCallback(response) {
-
-                    //  if(categoryTitle == categoryAll) {
-                         $scope.loadProducts();
-//                         return;
-//                      }
-
+ if(categoryTitle == categoryAll) {
+                         $scope.loadProducts(currentPageIndex);
+                         return;
+                      }
+                     $scope.loadProductsByCategory(currentPageIndex,categoryTitle);
                      }, function failCallback(response) {
                           alert(response.data.messages);
                  });
@@ -175,7 +163,7 @@ var objTable = document.getElementById("tableProduct");
 
                 }).then(function(response) {
            $scope.category = response.data.categoryViews;
-console.log( $scope.category);
+
 
                 });
                 }

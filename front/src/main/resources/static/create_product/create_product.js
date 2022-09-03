@@ -1,5 +1,5 @@
 angular.module('app-front').controller('createProductController', function ($rootScope, $scope, $http, $location) {
-    const contextPath = 'http://localhost:8189/app/api/v1/';
+    const contextPath = 'http://localhost:5555/logic/api/v1/';
 
 var objSel = document.getElementById("selectCategory");
 var objSel1 = document.getElementById("selectManufacturer");
